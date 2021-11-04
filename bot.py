@@ -57,7 +57,7 @@ def fill_survey(dict_of_options: dict, list_of_choices: list,  submit_button) ->
         choice.click()
         time.sleep(1)
     time.sleep(1)
-    # submit_button.click()
+    submit_button.click()
 
 
 

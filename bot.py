@@ -1,5 +1,6 @@
 import random
 import time
+import numpy as np
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
@@ -15,6 +16,12 @@ url = 'https://www.surveymonkey.com/r/WJKVKPB'
 groups = 10
 # No. of options for each question sequentially:
 options = [2, 6, 3, 3, 3, 5, 3, 3, 3, 3]
+# probablities for each choice
+bais_dict = {
+    1:[0.3, 0.7], 2:[0.5, 0.2, 0.1, 0.2, 0.0, 0.0], 3:[0.1, 0.7, 0.2],
+    4:[0.0, 0.9, 0.1], 5:[0.8, 0.0, 0.2], 6:[0.6, 0.3, 0.1 ,0.0, 0.0],
+    7: [0.5, 0.3, 0.2], 8: [0.8, 0.1, 0.1], 9: [0.6, 0.3, 0.1], 10: [0.9, 0.0, 0.1]
+}
 #############################################################################################
 
 # open the link and Find all radio buttons
@@ -37,15 +44,23 @@ def grouping(list_of_options: list, groups: int, options: list) -> dict:
     return qna_dict
 
 
-def fill_survey(dict_of_options: dict, submit_button) -> None:
-    for question_no in dict_of_options:
-        choice = random.choice(dict_of_options[question_no])
+def biased_choice(dict_of_options: dict, bais_dict: dict) -> list:
+    list_of_choices = []
+    for question_no, _ in zip(dict_of_options, bais_dict):
+        choice = np.random.choice(dict_of_options[question_no], p=bais_dict[question_no])
+        list_of_choices.append(choice)
+    return list_of_choices
+
+
+def fill_survey(dict_of_options: dict, list_of_choices: list,  submit_button) -> None:
+    for choice in list_of_choices:
         choice.click()
         time.sleep(1)
     time.sleep(1)
-    submit_button.click()
+    # submit_button.click()
 
 
 
 qna_dict = grouping(list_of_all_radio_buttons, groups, options)
-fill_survey(qna_dict, submit_button)
+choice_list = biased_choice(qna_dict, bais_dict)
+fill_survey(qna_dict, choice_list, submit_button)

@@ -11,13 +11,13 @@ driver = webdriver.Chrome(chromedriver_location)
 
 ###################################  SURVEY CONFIGURATION  ###################################
 # survey link
-url = 'https://www.surveymonkey.com/r/WJKVKPB'
+URL = 'https://www.surveymonkey.com/r/WJKVKPB'
 # no of questions:
-groups = 10
+GROUPS = 10
 # No. of options for each question sequentially:
-options = [2, 6, 3, 3, 3, 5, 3, 3, 3, 3]
+OPTIONS = [2, 6, 3, 3, 3, 5, 3, 3, 3, 3]
 # probablities for each choice
-bais_dict = {
+BAIS_DICT = {
     1:[0.3, 0.7], 2:[0.5, 0.2, 0.1, 0.2, 0.0, 0.0], 3:[0.1, 0.7, 0.2],
     4:[0.0, 0.9, 0.1], 5:[0.8, 0.0, 0.2], 6:[0.6, 0.3, 0.1 ,0.0, 0.0],
     7: [0.5, 0.3, 0.2], 8: [0.8, 0.1, 0.1], 9: [0.6, 0.3, 0.1], 10: [0.9, 0.0, 0.1]
@@ -25,7 +25,7 @@ bais_dict = {
 #############################################################################################
 
 # open the link and Find all radio buttons
-driver.get(url)
+driver.get(URL)
 time.sleep(2)
 list_of_all_radio_buttons = driver.find_elements(By.CSS_SELECTOR, "input[type='radio']")
 submit_xpath = '//*[@id = "patas"]/main/article/section/form/div[2]/button'
@@ -61,6 +61,14 @@ def fill_survey(dict_of_options: dict, list_of_choices: list,  submit_button) ->
 
 
 
-qna_dict = grouping(list_of_all_radio_buttons, groups, options)
-choice_list = biased_choice(qna_dict, bais_dict)
-fill_survey(qna_dict, choice_list, submit_button)
+
+def main(loops):
+    for i in range(loops):
+        qna_dict = grouping(list_of_all_radio_buttons, GROUPS, OPTIONS)
+        choice_list = biased_choice(qna_dict, BAIS_DICT)
+        fill_survey(qna_dict, choice_list, submit_button)
+
+
+
+if __name__ == "__main__":
+    main() # NO of times to run the loop

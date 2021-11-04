@@ -1,8 +1,8 @@
 Survey:  # survey link
   URL: 'https://www.surveymonkey.com/r/WJKVKPB'
+  
   # no of questions:
   GROUPS: 10
-
   # No. of options for each question sequentially:
   OPTIONS: [2, 6, 3, 3, 3, 5, 3, 3, 3, 3]
   # probablities for each choice

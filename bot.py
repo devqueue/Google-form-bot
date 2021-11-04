@@ -22,6 +22,8 @@ BAIS_DICT = {
     4:[0.0, 0.9, 0.1], 5:[0.8, 0.0, 0.2], 6:[0.6, 0.3, 0.1 ,0.0, 0.0],
     7: [0.5, 0.3, 0.2], 8: [0.8, 0.1, 0.1], 9: [0.6, 0.3, 0.1], 10: [0.9, 0.0, 0.1]
 }
+# No. of submits
+LOOPS = 30
 #############################################################################################
 
 # open the link and Find all radio buttons
@@ -71,4 +73,4 @@ def main(loops):
 
 
 if __name__ == "__main__":
-    main() # NO of times to run the loop
+    main(LOOPS) # NO of times to run the loop

@@ -8,8 +8,6 @@ from selenium.webdriver.common.by import By
 chromedriver_location = "./resources/chromedriver.exe"
 driver = webdriver.Chrome(chromedriver_location)
 
-
-
 # loading connfigs
 with open("config.yaml", "r") as ymlfile:
     config = yaml.load(ymlfile, Loader=yaml.FullLoader)
@@ -54,8 +52,6 @@ def fill_survey(dict_of_options: dict, list_of_choices: list,  submit_button) ->
         time.sleep(1)
     time.sleep(1)
     submit_button.click()
-
-
 
 
 def main(loops):

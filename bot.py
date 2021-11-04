@@ -1,4 +1,4 @@
-import random
+import yaml
 import time
 import numpy as np
 from selenium import webdriver
@@ -9,22 +9,16 @@ chromedriver_location = "./resources/chromedriver.exe"
 driver = webdriver.Chrome(chromedriver_location)
 
 
-###################################  SURVEY CONFIGURATION  ###################################
-# survey link
-URL = 'https://www.surveymonkey.com/r/WJKVKPB'
-# no of questions:
-GROUPS = 10
-# No. of options for each question sequentially:
-OPTIONS = [2, 6, 3, 3, 3, 5, 3, 3, 3, 3]
-# probablities for each choice
-BAIS_DICT = {
-    1:[0.3, 0.7], 2:[0.5, 0.2, 0.1, 0.2, 0.0, 0.0], 3:[0.1, 0.7, 0.2],
-    4:[0.0, 0.9, 0.1], 5:[0.8, 0.0, 0.2], 6:[0.6, 0.3, 0.1 ,0.0, 0.0],
-    7: [0.5, 0.3, 0.2], 8: [0.8, 0.1, 0.1], 9: [0.6, 0.3, 0.1], 10: [0.9, 0.0, 0.1]
-}
-# No. of submits
-LOOPS = 30
-#############################################################################################
+
+# loading connfigs
+with open("config.yaml", "r") as ymlfile:
+    config = yaml.load(ymlfile, Loader=yaml.FullLoader)
+
+URL = config["Survey"]["URL"]
+GROUPS = config["Survey"]["GROUPS"]
+OPTIONS = config["Survey"]["OPTIONS"]
+BAIS_DICT = config["Survey"]["BAIS_DICT"]
+LOOPS = config["Survey"]["LOOPS"]
 
 # open the link and Find all radio buttons
 driver.get(URL)

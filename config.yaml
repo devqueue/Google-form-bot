@@ -2,7 +2,7 @@ Survey:
   # Driver location
   DRIVER_LOCATION : './resources/chromedriver_95.0_linux'
   # survey link
-  URL: 'https://www.surveymonkey.com/r/WJKVKPB'
+  URL: 'https://www.surveymonkey.com/r/N2LC7P9'
 
   # no of questions:
   GROUPS: 10
@@ -24,6 +24,6 @@ Survey:
   }
   
   # No. of submits
-  LOOPS: 30
+  LOOPS: 20
 
 

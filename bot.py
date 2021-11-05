@@ -16,16 +16,21 @@ OPTIONS = config["Survey"]["OPTIONS"]
 BAIS_DICT = config["Survey"]["BAIS_DICT"]
 LOOPS = config["Survey"]["LOOPS"]
 
+
+
 # open the link and Find all radio buttons
 driver = webdriver.Chrome(DRIVER_LOCATION)
-driver.get(URL)
 
-time.sleep(2)
+def get_radio_buttons(driver):
+    time.sleep(1)
+    driver.get(URL)
+    time.sleep(2)
+    # fetch radio button objects
+    list_of_all_radio_buttons = driver.find_elements(By.CSS_SELECTOR, "input[type='radio']")
+    submit_xpath = '//*[@id = "patas"]/main/article/section/form/div[2]/button'
+    submit_button = driver.find_element(By.XPATH, submit_xpath)
 
-# fetch radio button objects
-list_of_all_radio_buttons = driver.find_elements(By.CSS_SELECTOR, "input[type='radio']")
-submit_xpath = '//*[@id = "patas"]/main/article/section/form/div[2]/button'
-submit_button = driver.find_element(By.XPATH, submit_xpath)
+    return list_of_all_radio_buttons, submit_button
 
 def grouping(list_of_options: list, groups: int, options: list) -> dict:
 
@@ -48,7 +53,7 @@ def biased_choice(dict_of_options: dict, bais_dict: dict) -> list:
     return list_of_choices
 
 
-def fill_survey(dict_of_options: dict, list_of_choices: list,  submit_button) -> None:
+def fill_survey(list_of_choices: list,  submit_button) -> None:
     for choice in list_of_choices:
         choice.click()
         time.sleep(1)
@@ -58,9 +63,10 @@ def fill_survey(dict_of_options: dict, list_of_choices: list,  submit_button) ->
 
 def main(loops):
     for i in range(loops):
+        list_of_all_radio_buttons, submit_button = get_radio_buttons(driver)
         qna_dict = grouping(list_of_all_radio_buttons, GROUPS, OPTIONS)
         choice_list = biased_choice(qna_dict, BAIS_DICT)
-        fill_survey(qna_dict, choice_list, submit_button)
+        fill_survey(choice_list, submit_button)
 
 
 

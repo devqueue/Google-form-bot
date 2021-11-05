@@ -4,14 +4,12 @@ import numpy as np
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
-# configs
-chromedriver_location = "./resources/chromedriver.exe"
-driver = webdriver.Chrome(chromedriver_location)
 
 # loading connfigs
 with open("config.yaml", "r") as ymlfile:
     config = yaml.load(ymlfile, Loader=yaml.FullLoader)
 
+DRIVER_LOCATION = config["Survey"]["DRIVER_LOCATION"]
 URL = config["Survey"]["URL"]
 GROUPS = config["Survey"]["GROUPS"]
 OPTIONS = config["Survey"]["OPTIONS"]
@@ -19,8 +17,12 @@ BAIS_DICT = config["Survey"]["BAIS_DICT"]
 LOOPS = config["Survey"]["LOOPS"]
 
 # open the link and Find all radio buttons
+driver = webdriver.Chrome(DRIVER_LOCATION)
 driver.get(URL)
+
 time.sleep(2)
+
+# fetch radio button objects
 list_of_all_radio_buttons = driver.find_elements(By.CSS_SELECTOR, "input[type='radio']")
 submit_xpath = '//*[@id = "patas"]/main/article/section/form/div[2]/button'
 submit_button = driver.find_element(By.XPATH, submit_xpath)

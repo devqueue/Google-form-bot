@@ -1,4 +1,7 @@
-Survey:  # survey link
+Survey:  
+  # Driver location
+  DRIVER_LOCATION : './resources/chromedriver_95.0_linux'
+  # survey link
   URL: 'https://www.surveymonkey.com/r/WJKVKPB'
 
   # no of questions:

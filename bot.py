@@ -56,8 +56,8 @@ def biased_choice(dict_of_options: dict, bais_dict: dict) -> list:
 def fill_survey(list_of_choices: list,  submit_button) -> None:
     for choice in list_of_choices:
         choice.click()
-        time.sleep(1)
-    time.sleep(1)
+        time.sleep(0.15)
+    time.sleep(0.50)
     submit_button.click()
 
 

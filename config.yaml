@@ -1,6 +1,6 @@
 Survey:  
   # Driver location
-  DRIVER_LOCATION : './resources/chromedriver_95.0_linux'
+  DRIVER_LOCATION : ''
   # survey link
   URL: ''
 
@@ -8,8 +8,8 @@ Survey:
   GROUPS: 10
   # No. of options for each question sequentially:
   OPTIONS: [2, 6, 3, 3, 3, 5, 3, 3, 3, 3]
-  # probablities for each choice
 
+  # probablities for each choice
   BAIS_DICT: {
       1: [0.3, 0.7], 
       2: [0.5, 0.2, 0.1, 0.2, 0.0, 0.0], 

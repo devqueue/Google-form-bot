@@ -3,7 +3,7 @@ This is python bot made with selenium to auto submit responses. The responses ca
 
 ## Requirements:
 1. Chrome web browser: Chrome or a chromium based browser should be used.
-2. Selenium driver: Go to this [link](https://chromedriver.chromium.org/downloads) and install the driver for your version of chrome. Check your version [here](chrome://settings/help) 
+2. Selenium driver: Go to this [link](https://chromedriver.chromium.org/downloads) and install the driver for your version of chrome. Check your version [here](chrome://settings/help).
 3. Install the required packages:
    1. Create a virtual environment (optional)
    2. Run `pip install -r requirements.txt`
